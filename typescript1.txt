@@ -1,0 +1,24 @@
+Script started on Mon 23 Apr 2018 02:07:00 PM PDT
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ sudo insmod char_device.ko
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ dmesg
+...
+[ 9791.711583] Allocated 1 device/s at Major Number 244.
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ sudo mknod /dev/char_device c 244 0
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ ./simple_reader 
+Received syscall_val = 25 from module.
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ sudo rmmod char_device 
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ sudo insmod char_device.ko syscall_val=42
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ ./simple_reader 
+Received syscall_val = 42 from module.
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ sudo rmmod char_device
+ece-373@ECE-373: ~/ECE-373/Assignment-2$ dmesg
+...
+[ 9821.001446] char_device module opened.
+[ 9821.001454] User received 25.
+[ 9829.493702] Module Removed.
+[ 9842.764553] Allocated 1 device/s at Major Number 244.
+[ 9845.107842] char_device module opened.
+[ 9845.107861] User received 42.
+[ 9855.352924] Module Removed.
+ece-373@ECE-373: ~/ECE-373/Assignment-2$exit
+Script done on Mon 23 Apr 2018 02:08:50 PM PDT
